@@ -1,21 +1,47 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat - App</title>
+</head>
+<body>
+	<div class="chat_window">
+   <div class="message_top" >
+    Intercom<br>
+    We help your business grow by connecting you to your customers.<br>
+    <img src="assets/img/ico-male.jpg" alt="Avatar" class="avatar pad-r ">
+    <img src="assets/img/ico-avtar.jpeg" alt="Avatar" class="avatar pad-r ">
+    <img src="assets/img/man.png" alt="Avatar" class="avatar pad-r "><br>
+    The team typically replies in a few hours.
+   </div>
+		<ul class="messages">
+      <li class="message appeared right">
+        <div class="avatar"></div>
+        <div class="text_wrapper">
+          <div class="text">Hello</div>
+        </div>
+      </li>
+      <ng-container *ngFor = "let data of sendMessage">
+        <li class="message appeared left">
+          <div class="avatar"></div>
+          <div class="text_wrapper">
+            <div class="text">{{data}}</div>
+          </div>
+        </li>
+      </ng-container>
+
+		</ul>
+		<div class="bottom_wrapper clearfix">
+			<div class="message_input_wrapper">
+				<input  class="message_input" [(ngModel)]="messageInputField" placeholder="Type your message here..." />
+			</div>
+			<div class="send_message" (click)="sendSms()" >
+				<div class="icon"></div>
+				<div class="text">Send</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
 
 <router-outlet></router-outlet>
