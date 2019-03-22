@@ -1,47 +1,59 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Chat - App</title>
+  <title>Chat - App</title>
 </head>
+
 <body>
-	<div class="chat_window">
-   <div class="message_top" >
-    Intercom<br>
-    We help your business grow by connecting you to your customers.<br>
-    <img src="assets/img/ico-male.jpg" alt="Avatar" class="avatar pad-r ">
-    <img src="assets/img/ico-avtar.jpeg" alt="Avatar" class="avatar pad-r ">
-    <img src="assets/img/man.png" alt="Avatar" class="avatar pad-r "><br>
-    The team typically replies in a few hours.
-   </div>
-		<ul class="messages">
-      <li class="message appeared right">
-        <div class="avatar"></div>
-        <div class="text_wrapper">
-          <div class="text">Hello</div>
-        </div>
-      </li>
-      <ng-container *ngFor = "let data of sendMessage">
-        <li class="message appeared left">
-          <div class="avatar"></div>
-          <div class="text_wrapper">
-            <div class="text">{{data}}</div>
-          </div>
-        </li>
+  <div class="chat_window">
+    <app-online-persons></app-online-persons>
+    <ul class="messages">
+      <ng-container *ngFor="let data of messages">
+        <ng-container *ngIf="data.type =='receive'">
+          <li class="message appeared right">
+            <div class="avatar">
+              <img [src]="data.image" alt="Avatar" class="avatar pad-r ">
+            </div>
+            <div  *ngIf="data.messageType == 'text'" class="text_wrapper">
+              <div class="text">{{data.text}}</div>
+            </div>
+            <ng-container *ngIf="data.messageType == 'image'">
+              <img [src]="data.src">
+            </ng-container>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="data.type =='send'">
+          <li class="message appeared left">
+            <div class="avatar">
+              <img [src]="data.image" alt="Avatar" class="avatar pad-r ">
+            </div>
+            <ng-container *ngIf="data.messageType == 'text'">
+              <div class="text_wrapper">
+                <div class="text">{{data.text}}</div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="data.messageType == 'image'">
+              <img [src]="data.src">
+            </ng-container>
+          </li>
+        </ng-container>
       </ng-container>
 
-		</ul>
-		<div class="bottom_wrapper clearfix">
-			<div class="message_input_wrapper">
-				<input  class="message_input" [(ngModel)]="messageInputField" placeholder="Type your message here..." />
-			</div>
-			<div class="send_message" (click)="sendSms()" >
-				<div class="icon"></div>
-				<div class="text">Send</div>
-			</div>
-		</div>
-	</div>
+    </ul>
+    <div class="bottom_wrapper clearfix">
+      <div class="message_input_wrapper">
+        <input class="message_input" [(ngModel)]="messageInputField" placeholder="Type your message here..." />
+      </div>
+      <div class="send_message" (click)="sendSms()">
+        <div class="icon"></div>
+        <div class="text">Send</div>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
 
 <router-outlet></router-outlet>

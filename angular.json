@@ -26,7 +26,8 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": ["node_modules/jquery/dist/jquery.min.js",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
@@ -126,6 +127,133 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "onlineMembers": {
+      "root": "projects/onlineMembers/",
+      "sourceRoot": "projects/onlineMembers/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/onlineMembers",
+            "index": "projects/onlineMembers/src/index.html",
+            "main": "projects/onlineMembers/src/main.ts",
+            "polyfills": "projects/onlineMembers/src/polyfills.ts",
+            "tsConfig": "projects/onlineMembers/tsconfig.app.json",
+            "assets": [
+              "projects/onlineMembers/src/favicon.ico",
+              "projects/onlineMembers/src/assets"
+            ],
+            "styles": [
+              "projects/onlineMembers/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/onlineMembers/src/environments/environment.ts",
+                  "with": "projects/onlineMembers/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "onlineMembers:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "onlineMembers:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "onlineMembers:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/onlineMembers/src/test.ts",
+            "polyfills": "projects/onlineMembers/src/polyfills.ts",
+            "tsConfig": "projects/onlineMembers/tsconfig.spec.json",
+            "karmaConfig": "projects/onlineMembers/karma.conf.js",
+            "styles": [
+              "projects/onlineMembers/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/onlineMembers/src/favicon.ico",
+              "projects/onlineMembers/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/onlineMembers/tsconfig.app.json",
+              "projects/onlineMembers/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "onlineMembers-e2e": {
+      "root": "projects/onlineMembers-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/onlineMembers-e2e/protractor.conf.js",
+            "devServerTarget": "onlineMembers:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "onlineMembers:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/onlineMembers-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

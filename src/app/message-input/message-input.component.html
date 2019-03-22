@@ -1,0 +1,9 @@
+<div class="bottom_wrapper clearfix">
+    <div class="message_input_wrapper">
+      <input  class="message_input" [(ngModel)]="messageInputField" placeholder="Type your message here..." />
+    </div>
+    <div class="send_message" (click)="sendSms()" >
+      <div class="icon"></div>
+      <div class="text">Send</div>
+    </div>
+  </div>
